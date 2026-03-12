@@ -44,7 +44,7 @@ export default function HowItWorks() {
                     initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
+                    transition={{ duration: 0.5 }}
                     className="text-center mb-20"
                 >
                     <motion.span
@@ -87,7 +87,7 @@ export default function HowItWorks() {
                                 initial={{ opacity: 0, x: i % 2 === 0 ? -60 : 60 }}
                                 whileInView={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true, margin: '-100px' }}
-                                transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+                                transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
                                 className={`flex flex-col md:flex-row items-center gap-8 ${i % 2 === 1 ? 'md:flex-row-reverse' : ''
                                     }`}
                             >

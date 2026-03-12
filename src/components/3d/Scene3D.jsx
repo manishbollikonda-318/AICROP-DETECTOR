@@ -103,7 +103,7 @@ extend({ GrassShaderMaterial })
 // =============================================
 // GRASS FIELD — thousands of instanced blades
 // =============================================
-function GrassField({ count = 12000 }) {
+function GrassField({ count = 3000 }) {
     const meshRef = useRef()
     const matRef = useRef()
     const { darkMode } = useAppStore()
@@ -212,7 +212,7 @@ function GrassField({ count = 12000 }) {
 // =============================================
 // FIREFLIES — golden particles floating
 // =============================================
-function Fireflies({ count = 80 }) {
+function Fireflies({ count = 30 }) {
     const pointsRef = useRef()
     const { darkMode } = useAppStore()
 
@@ -262,7 +262,7 @@ function Fireflies({ count = 80 }) {
 // =============================================
 // POLLEN/SEEDS — floating in the wind
 // =============================================
-function Pollen({ count = 60 }) {
+function Pollen({ count = 20 }) {
     const meshRef = useRef()
 
     const positions = useMemo(() => {
@@ -521,14 +521,14 @@ export default function Scene3D() {
             <fog attach="fog" args={[darkMode ? '#0a0f0d' : '#e8f5e9', 6, 28]} />
 
             {/* ===== GRASS FIELD ===== */}
-            <GrassField count={10000} />
+            <GrassField count={3000} />
 
             {/* Ground beneath grass */}
             <Ground />
 
             {/* ===== ATMOSPHERIC PARTICLES ===== */}
-            <Fireflies count={darkMode ? 80 : 40} />
-            <Pollen count={50} />
+            <Fireflies count={darkMode ? 40 : 20} />
+            <Pollen count={20} />
 
             {/* Main Globe */}
             <GlobeOrb />

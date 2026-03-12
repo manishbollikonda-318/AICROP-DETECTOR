@@ -55,7 +55,7 @@ export default function StatsSection() {
                     initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
+                    transition={{ duration: 0.5 }}
                     className="text-center mb-20"
                 >
                     <h2 className="font-display text-4xl sm:text-5xl font-black mb-4"
@@ -83,7 +83,7 @@ export default function StatsSection() {
                             initial={{ opacity: 0, y: 60, scale: 0.8 }}
                             whileInView={{ opacity: 1, y: 0, scale: 1 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: i * 0.15, ease: [0.4, 0, 0.2, 1] }}
+                            transition={{ duration: 0.4, delay: i * 0.1, ease: [0.4, 0, 0.2, 1] }}
                             className="glass-card p-8 text-center group"
                         >
                             {/* Emoji */}

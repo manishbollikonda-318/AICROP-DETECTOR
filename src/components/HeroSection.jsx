@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useAppStore } from '../store/useAppStore'
 
 const holoCards = [
@@ -15,6 +15,7 @@ const heroColors = ['var(--neon-primary)', 'var(--neon-secondary)', '#7fff00', '
 
 export default function HeroSection() {
     const { mouseX, mouseY, scrollProgress } = useAppStore()
+    const navigate = useNavigate()
     const [wordIndex, setWordIndex] = useState(0)
     const [typedText, setTypedText] = useState('')
     const [isTyping, setIsTyping] = useState(true)
@@ -59,7 +60,7 @@ export default function HeroSection() {
                     <motion.div
                         initial={{ opacity: 0, x: -60 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 1, ease: [0.4, 0, 0.2, 1], delay: 0.3 }}
+                        transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1], delay: 0.1 }}
                         className="relative z-10"
                         style={{
                             transform: `translateY(${textY}px) scale(${textScale})`,
@@ -71,7 +72,7 @@ export default function HeroSection() {
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.5, duration: 0.6 }}
+                            transition={{ delay: 0.2, duration: 0.4 }}
                             className="inline-flex items-center gap-2 glass px-4 py-2 rounded-full mb-8"
                         >
                             <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
@@ -107,7 +108,7 @@ export default function HeroSection() {
                         <motion.p
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
-                            transition={{ delay: 0.8, duration: 0.8 }}
+                            transition={{ delay: 0.3, duration: 0.5 }}
                             className="text-lg font-body opacity-70 mb-10 max-w-xl leading-relaxed"
                             style={{ color: 'var(--text-primary)' }}
                         >
@@ -123,36 +124,101 @@ export default function HeroSection() {
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 1, duration: 0.6 }}
-                            className="flex flex-wrap gap-4"
+                            transition={{ delay: 0.4, duration: 0.4 }}
+                            className="flex flex-col gap-4"
                         >
-                            <Link to="/planner">
-                                <motion.button
-                                    className="btn-neon-filled text-base"
-                                    whileHover={{ scale: 1.05, boxShadow: '0 0 50px rgba(0,255,136,0.5)' }}
-                                    whileTap={{ scale: 0.95 }}
-                                    id="start-planning-btn"
-                                >
-                                    🚀 Start Planning
-                                </motion.button>
-                            </Link>
-                            <Link to="/doctor">
-                                <motion.button
-                                    className="btn-neon text-base"
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    id="upload-plant-btn"
-                                >
-                                    <span>🔬 Plant Doctor AI</span>
-                                </motion.button>
-                            </Link>
+                            {/* Top row: Planning + Doctor */}
+                            <div className="flex flex-wrap gap-4">
+                                <Link to="/planner">
+                                    <motion.button
+                                        className="btn-neon-filled text-base"
+                                        whileHover={{ scale: 1.05, boxShadow: '0 0 50px rgba(0,255,136,0.5)' }}
+                                        whileTap={{ scale: 0.95 }}
+                                        id="start-planning-btn"
+                                    >
+                                        🚀 Start Planning
+                                    </motion.button>
+                                </Link>
+                                <Link to="/doctor">
+                                    <motion.button
+                                        className="btn-neon text-base"
+                                        whileHover={{ scale: 1.05 }}
+                                        whileTap={{ scale: 0.95 }}
+                                        id="upload-plant-btn"
+                                    >
+                                        <span>🔬 Plant Doctor AI</span>
+                                    </motion.button>
+                                </Link>
+                            </div>
+
+                            {/* Large Features Button — navigates to Plant Doctor (core feature) */}
+                            <motion.button
+                                id="explore-features-btn"
+                                onClick={() => navigate('/doctor')}
+                                className="w-full relative overflow-hidden rounded-2xl py-4 px-6 text-left group"
+                                style={{
+                                    border: '1.5px solid var(--neon-primary)',
+                                    background: 'rgba(0,255,136,0.05)',
+                                    backdropFilter: 'blur(10px)',
+                                }}
+                                whileHover={{ scale: 1.02, background: 'rgba(0,255,136,0.10)' }}
+                                whileTap={{ scale: 0.98 }}
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.5 }}
+                            >
+                                {/* Animated gradient sweep on hover */}
+                                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                                    style={{ background: 'linear-gradient(90deg, transparent, rgba(0,255,136,0.08), transparent)' }} />
+
+                                <div className="relative flex items-center justify-between gap-4">
+                                    <div>
+                                        <div className="flex items-center gap-2 mb-1.5">
+                                            <span className="text-lg">🚀</span>
+                                            <span className="font-display text-base font-bold"
+                                                style={{ color: 'var(--neon-primary)' }}>
+                                                Explore All Features
+                                            </span>
+                                        </div>
+                                        {/* Feature quick-links row — each navigates to its page */}
+                                        <div className="flex flex-wrap gap-2">
+                                            {[
+                                                { emoji: '🌾', label: 'Crop Planner', path: '/planner' },
+                                                { emoji: '🔬', label: 'Plant Doctor', path: '/doctor' },
+                                                { emoji: '📊', label: 'Calculator', path: '/calculator' },
+                                                { emoji: '🌍', label: 'Encyclopedia', path: '/encyclopedia' },
+                                            ].map((f) => (
+                                                <Link
+                                                    key={f.label}
+                                                    to={f.path}
+                                                    className="text-xs font-mono px-2 py-0.5 rounded-lg hover:scale-105 transition-transform duration-200"
+                                                    style={{ background: 'rgba(0,255,136,0.1)', color: 'var(--neon-primary)' }}
+                                                    onClick={(e) => e.stopPropagation()}
+                                                >
+                                                    {f.emoji} {f.label}
+                                                </Link>
+                                            ))}
+                                        </div>
+                                    </div>
+                                    {/* Arrow */}
+                                    <motion.div
+                                        animate={{ x: [0, 6, 0] }}
+                                        transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+                                        className="text-2xl flex-shrink-0"
+                                        style={{ color: 'var(--neon-primary)' }}
+                                    >
+                                        →
+                                    </motion.div>
+                                </div>
+                            </motion.button>
                         </motion.div>
+
 
                         {/* Quick Stats under CTA */}
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
-                            transition={{ delay: 1.5 }}
+                            transition={{ delay: 0.6 }}
                             className="flex gap-8 mt-8"
                         >
                             {[
@@ -176,7 +242,7 @@ export default function HeroSection() {
                     <motion.div
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 1.2, ease: [0.4, 0, 0.2, 1], delay: 0.5 }}
+                        transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1], delay: 0.2 }}
                         className="relative flex items-center justify-center min-h-[400px] lg:min-h-[500px]"
                         style={{
                             transform: `perspective(1000px) rotateY(${mouseX * 3}deg) rotateX(${mouseY * -3}deg) translateY(${textY * 0.3}px)`,
@@ -244,7 +310,7 @@ export default function HeroSection() {
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ delay: 2, duration: 1 }}
+                    transition={{ delay: 0.8, duration: 0.6 }}
                     className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
                     style={{ opacity: textOpacity }}
                 >

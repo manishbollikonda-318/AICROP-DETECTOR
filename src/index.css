@@ -301,6 +301,59 @@ body {
     padding: 60px 16px;
     min-height: auto;
   }
+
+  /* Global mobile font scaling */
+  h1 { font-size: 2rem !important; line-height: 1.2 !important; }
+  h2 { font-size: 1.5rem !important; }
+
+  /* Buttons - mobile friendly tap targets */
+  .btn-neon, .btn-neon-filled {
+    padding: 12px 24px;
+    font-size: 0.875rem;
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Glass cards - tighter padding on mobile */
+  .glass-card {
+    border-radius: 16px;
+    padding: 16px;
+  }
+  .glass-card:hover {
+    transform: none;
+  }
+
+  /* Chat widget - mobile optimized */
+  .chat-widget {
+    bottom: 16px;
+    right: 16px;
+  }
+  .chat-trigger {
+    width: 52px;
+    height: 52px;
+    font-size: 22px;
+  }
+  .chat-panel {
+    width: calc(100vw - 32px);
+    right: -8px;
+    max-height: 400px;
+  }
+
+  /* Holo cards - hide on mobile, too tight */
+  .holo-card {
+    display: none;
+  }
+}
+
+/* Extra small screens (< 480px) */
+@media (max-width: 480px) {
+  h1 { font-size: 1.75rem !important; }
+  h2 { font-size: 1.25rem !important; }
+
+  .btn-neon, .btn-neon-filled {
+    padding: 10px 20px;
+    font-size: 0.8rem;
+  }
 }
 
 /* ===== CHAT WIDGET ===== */

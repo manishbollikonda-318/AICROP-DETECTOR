@@ -1,5 +1,5 @@
 import React, { Suspense, useEffect, useState } from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { HashRouter as Router, Routes, Route } from 'react-router-dom'
 import { Canvas } from '@react-three/fiber'
 import { useAppStore } from './store/useAppStore'
 import Navbar from './components/Navbar'
@@ -57,8 +57,8 @@ function AppContent() {
     useEffect(() => {
         const timer = setTimeout(() => {
             setLoaded()
-            setTimeout(() => setShowContent(true), 500)
-        }, 2500)
+            setTimeout(() => setShowContent(true), 200)
+        }, 1200)
         return () => clearTimeout(timer)
     }, [])
 

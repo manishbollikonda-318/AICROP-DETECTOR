@@ -59,7 +59,7 @@ function TiltCard({ feature, index }) {
         const centerY = rect.height / 2
         const rotateX = (y - centerY) / centerY * -8
         const rotateY = (x - centerX) / centerX * 8
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`
     }
 
     const handleMouseLeave = () => {
@@ -72,7 +72,7 @@ function TiltCard({ feature, index }) {
             initial={{ opacity: 0, y: 60 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: index * 0.1 }}
+            transition={{ duration: 0.4, delay: index * 0.05 }}
             className="tilt-card"
         >
             <div
@@ -134,7 +134,7 @@ export default function FeaturesSection() {
                     initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
+                    transition={{ duration: 0.5 }}
                     className="text-center mb-20"
                 >
                     <motion.span
