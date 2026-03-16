@@ -7,3 +7,4 @@ It provides real-time crop recommendations, disease detection, weather integrati
 - AI Plant Doctor for disease diagnosis
 - Crop Planning
 - Cost Calculator
+link **https://manishbollikonda-318.github.io/AICROP-DETECTOR/**
